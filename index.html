@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noel Edward G. Madrideo | CS Portfolio & Branding</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            dark: '#050508',
+                            card: '#0c0c14',
+                            border: '#1f1f38',
+                            accent: '#6366f1',
+                            glow: '#a855f7',
+                            neon: '#06b6d4'
+                        }
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 4s ease-in-out infinite',
+                        'glow': 'glow 3s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        glow: {
+                            '0%': { boxShadow: '0 0 15px rgba(99, 102, 241, 0.2)' },
+                            '100%': { boxShadow: '0 0 30px rgba(168, 85, 247, 0.6)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #050508;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+        .code-font {
+            font-family: 'Fira Code', monospace;
+        }
+        .glass-panel {
+            background: rgba(12, 12, 20, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .gradient-border {
+            position: relative;
+            border-radius: 1rem;
+            background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+        }
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: inherit;
+            padding: 1px;
+            background: linear-gradient(45deg, #6366f1, #a855f7, #06b6d4);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+        .glow-text {
+            text-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+        }
+        .bg-grid-pattern {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050508;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1f1f38;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6366f1;
+        }
+    </style>
+</head>
+<body class="bg-grid-pattern min-h-screen selection:bg-indigo-500 selection:text-white">
+
+    <header class="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-white/5 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#hero" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-500 via-purple-500 to-cyan-400 p-[2px] animate-glow">
+                    <div class="w-full h-full bg-cyber-dark rounded-[10px] flex items-center justify-center font-bold text-lg text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">
+                        NM
+                    </div>
+                </div>
+                <div>
+                    <span class="font-extrabold tracking-tight text-white group-hover:text-indigo-400 transition-colors">NOEL EDWARD</span>
+                    <span class="block text-xs text-cyan-400 code-font tracking-widest">PRMSU CS</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+                <a href="#about" class="hover:text-indigo-400 transition-colors">About</a>
+                <a href="#projects" class="hover:text-indigo-400 transition-colors">Projects</a>
+                <a href="#certs" class="hover:text-indigo-400 transition-colors">Certifications</a>
+                <a href="#skills" class="hover:text-indigo-400 transition-colors">Skills</a>
+                <a href="#contact" class="hover:text-indigo-400 transition-colors">Contact</a>
+            </nav>
+
+            <div class="hidden md:flex items-center gap-4">
+                <a href="#contact" class="px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 shadow-lg shadow-indigo-500/25 transition-all transform hover:-translate-y-0.5">
+                    <i class="fa-solid fa-terminal mr-2"></i>Let's Talk
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="menu-toggle" class="md:hidden text-slate-300 hover:text-white p-2 text-xl focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden glass-panel border-b border-white/10 px-6 py-6 space-y-4">
+            <a href="#about" class="block text-slate-300 hover:text-indigo-400 font-medium">About</a>
+            <a href="#projects" class="block text-slate-300 hover:text-indigo-400 font-medium">Projects</a>
+            <a href="#certs" class="block text-slate-300 hover:text-indigo-400 font-medium">Certifications</a>
+            <a href="#skills" class="block text-slate-300 hover:text-indigo-400 font-medium">Skills</a>
+            <a href="#contact" class="block text-slate-300 hover:text-indigo-400 font-medium">Contact</a>
+        </div>
+    </header>
+
+    <section id="hero" class="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden">
+        <!-- Glowing background orbs -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-600/20 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute top-1/3 left-1/4 w-[350px] h-[350px] bg-purple-600/15 rounded-full blur-[100px] pointer-events-none"></div>
+        <div class="absolute top-1/2 right-1/4 w-[400px] h-[400px] bg-cyan-600/15 rounded-full blur-[110px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel border border-indigo-500/30 text-xs font-semibold text-indigo-300 code-font animate-pulse">
+                        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+                        PRMSU Castillejos • Computer Science Student
+                    </div>
+                    
+                    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-none">
+                        Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-cyan-400 glow-text">Noel Edward</span>
+                    </h1>
+                    
+                    <p class="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                        Passionate software developer and Computer Science scholar at President Ramon Magsaysay State University. Building high-performance web solutions, algorithmic tools, and intelligent systems.
+                    </p>
+
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4">
+                        <a href="#projects" class="px-8 py-4 rounded-xl font-bold text-white bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-600 bg-[length:200%_auto] hover:bg-[position:right_center] transition-all shadow-lg shadow-indigo-500/30 flex items-center gap-3">
+                            <span>Explore Projects</span>
+                            <i class="fa-solid fa-arrow-right-long"></i>
+                        </a>
+                        <a href="#certs" class="px-8 py-4 rounded-xl font-bold text-slate-200 glass-panel hover:bg-white/5 border border-white/10 transition-all flex items-center gap-3">
+                            <i class="fa-solid fa-certificate text-cyan-400"></i>
+                            <span>View Certifications</span>
+                        </a>
+                    </div>
+
+                    <!-- Quick stats / badges -->
+                    <div class="grid grid-cols-3 gap-4 pt-8 border-t border-white/10 max-w-lg mx-auto lg:mx-0">
+                        <div class="text-center lg:text-left">
+                            <div class="text-2xl sm:text-3xl font-extrabold text-white code-font">5+</div>
+                            <div class="text-xs text-slate-400 mt-1">Deployed Apps</div>
+                        </div>
+                        <div class="text-center lg:text-left">
+                            <div class="text-2xl sm:text-3xl font-extrabold text-cyan-400 code-font">9+</div>
+                            <div class="text-xs text-slate-400 mt-1">Saylor Certs</div>
+                        </div>
+                        <div class="text-center lg:text-left">
+                            <div class="text-2xl sm:text-3xl font-extrabold text-purple-400 code-font">100%</div>
+                            <div class="text-xs text-slate-400 mt-1">Dedication</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Interactive Code / Visual Card -->
+                <div class="lg:col-span-5">
+                    <div class="gradient-border p-1 animate-float">
+                        <div class="glass-panel rounded-[15px] p-6 shadow-2xl relative overflow-hidden">
+                            <!-- Window header bar -->
+                            <div class="flex items-center justify-between pb-4 mb-4 border-b border-white/10">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                                    <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                                    <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                                </div>
+                                <span class="text-xs code-font text-slate-400">noel_profile.js</span>
+                            </div>
+
+                            <!-- Code snippet content -->
+                            <div class="code-font text-xs sm:text-sm space-y-2 text-slate-300">
+                                <p><span class="text-purple-400">const</span> <span class="text-indigo-400">developer</span> = {</p>
+                                <p class="pl-4">name: <span class="text-green-300">"Noel Edward G. Madrideo"</span>,</p>
+                                <p class="pl-4">institution: <span class="text-green-300">"PRMSU Castillejos"</span>,</p>
+                                <p class="pl-4">degree: <span class="text-green-300">"B.S. Computer Science"</span>,</p>
+                                <p class="pl-4">focus: [<span class="text-amber-300">"AI"</span>, <span class="text-amber-300">"C++"</span>, <span class="text-amber-300">"Python"</span>, <span class="text-amber-300">"Web Dev"</span>],</p>
+                                <p class="pl-4">status: <span class="text-cyan-300">"Building the future..."</span></p>
+                                <p>};</p>
+                                <br>
+                                <p class="text-slate-500">// Run diagnostics</p>
+                                <p><span class="text-indigo-400">developer</span>.<span class="text-yellow-300">initStatus</span>();</p>
+                            </div>
+
+                            <!-- Interactive status pill -->
+                            <div class="mt-6 p-3 rounded-xl bg-indigo-950/40 border border-indigo-500/20 flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-2.5 h-2.5 rounded-full bg-green-400 animate-ping"></div>
+                                    <span class="text-xs font-semibold text-slate-200">System Online & Ready</span>
+                                </div>
+                                <span class="text-xs code-font text-indigo-400">v2.6.4</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-20 relative border-t border-white/5 bg-cyber-card/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-indigo-400 code-font text-sm uppercase tracking-widest font-semibold">Background & Persona</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold mt-2 text-white">About Me</h2>
+                <div class="w-16 h-1 bg-gradient-to-r from-indigo-500 to-cyan-400 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="glass-panel p-8 rounded-2xl border border-white/10 hover:border-indigo-500/50 transition-all group">
+                    <div class="w-14 h-14 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Academic Excellence</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Currently pursuing Computer Science at President Ramon Magsaysay State University (PRMSU) Castillejos, mastering algorithms, data structures, and rigorous software engineering principles.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-panel p-8 rounded-2xl border border-white/10 hover:border-purple-500/50 transition-all group">
+                    <div class="w-14 h-14 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Continuous Learner</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Extensively certified through Saylor Academy across 9 core CS domains—ranging from Artificial Intelligence and C++ programming to discrete structures and software architecture.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-panel p-8 rounded-2xl border border-white/10 hover:border-cyan-500/50 transition-all group">
+                    <div class="w-14 h-14 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Innovative Creator</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Passionate about building intuitive web applications, calculators, and interactive academic platforms that solve real-world problems with clean, optimized code.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-20 relative border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
+                <div>
+                    <span class="text-indigo-400 code-font text-sm uppercase tracking-widest font-semibold">Repository Showcase</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold mt-2 text-white">Featured Projects</h2>
+                    <div class="w-16 h-1 bg-gradient-to-r from-indigo-500 to-cyan-400 mt-4 rounded-full"></div>
+                </div>
+                <p class="text-slate-400 text-sm mt-4 md:mt-0 max-w-md">
+                    Explore my live deployed web applications ranging from utility number converters and math tools to academic resource hubs.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Project 1: ICEBREAKER -->
+                <div class="gradient-border p-[1px] group">
+                    <div class="glass-panel rounded-[15px] p-6 h-full flex flex-col justify-between transition-transform duration-300 group-hover:-translate-y-1">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 code-font">Web App</span>
+                                <i class="fa-solid fa-users-rectangle text-2xl text-indigo-400"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white group-hover:text-indigo-400 transition-colors">Collective Noun Roundups</h3>
+                            <p class="text-slate-400 text-sm mt-2 leading-relaxed">
+                                An interactive web tool for exploring and testing knowledge on fascinating collective nouns in English grammar and vocabulary.
+                            </p>
+                        </div>
+                        <div class="pt-6 mt-6 border-t border-white/15 flex items-center justify-between">
+                            <span class="text-xs code-font text-slate-400">GitHub Pages</span>
+                            <a href="https://noeledwardmadrideo-cell.github.io/ICEBREAKER/" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-xl text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-500 transition-colors flex items-center gap-2">
+                                <span>Live Demo</span>
+                                <i class="fa-solid fa-external-link-alt text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: CONVERSION -->
+                <div class="gradient-border p-[1px] group">
+                    <div class="glass-panel rounded-[15px] p-6 h-full flex flex-col justify-between transition-transform duration-300 group-hover:-translate-y-1">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-3 py-1 rounded-full text-xs font-semibold bg-purple-500/10 text-purple-400 border border-purple-500/20 code-font">Utility</span>
+                                <i class="fa-solid fa-calculator text-2xl text-purple-400"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white group-hover:text-purple-400 transition-colors">Number System Conversion</h3>
+                            <p class="text-slate-400 text-sm mt-2 leading-relaxed">
+                                Fast and accurate real-time converter between Binary, Decimal, Octal, and Hexadecimal number systems for computer science students.
+                            </p>
+                        </div>
+                        <div class="pt-6 mt-6 border-t border-white/15 flex items-center justify-between">
+                            <span class="text-xs code-font text-slate-400">GitHub Pages</span>
+                            <a href="https://noeledwardmadrideo-cell.github.io/CONVERSION/" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-xl text-xs font-semibold text-white bg-purple-600 hover:bg-purple-500 transition-colors flex items-center gap-2">
+                                <span>Live Demo</span>
+                                <i class="fa-solid fa-external-link-alt text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: Basic-Calculator -->
+                <div class="gradient-border p-[1px] group">
+                    <div class="glass-panel rounded-[15px] p-6 h-full flex flex-col justify-between transition-transform duration-300 group-hover:-translate-y-1">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-3 py-1 rounded-full text-xs font-semibold bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 code-font">Tool</span>
+                                <i class="fa-solid fa-square-root-variable text-2xl text-cyan-400"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">Basic Calculator</h3>
+                            <p class="text-slate-400 text-sm mt-2 leading-relaxed">
+                                A sleek, responsive web calculator designed with modern aesthetics and smooth responsiveness for everyday arithmetic computations.
+                            </p>
+                        </div>
+                        <div class="pt-6 mt-6 border-t border-white/15 flex items-center justify-between">
+                            <span class="text-xs code-font text-slate-400">GitHub Pages</span>
+                            <a href="https://noeledwardmadrideo-cell.github.io/Basic-Calculator/" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-xl text-xs font-semibold text-white bg-cyan-600 hover:bg-cyan-500 transition-colors flex items-center gap-2">
+                                <span>Live Demo</span>
+                                <i class="fa-solid fa-external-link-alt text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4: CC-101 / Acad Forms -->
+                <div class="gradient-border p-[1px] group">
+                    <div class="glass-panel rounded-[15px] p-6 h-full flex flex-col justify-between transition-transform duration-300 group-hover:-translate-y-1">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-3 py-1 rounded-full text-xs font-semibold bg-pink-500/10 text-pink-400 border border-pink-500/20 code-font">Academic</span>
+                                <i class="fa-solid fa-file-lines text-2xl text-pink-400"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white group-hover:text-pink-400 transition-colors">CC-101 Acad Forms</h3>
+                            <p class="text-slate-400 text-sm mt-2 leading-relaxed">
+                                Streamlined academic form submission and resource repository portal developed for CC-101 coursework requirements.
+                            </p>
+                        </div>
+                        <div class="pt-6 mt-6 border-t border-white/15 flex items-center justify-between">
+                            <span class="text-xs code-font text-slate-400">GitHub Pages</span>
+                            <a href="https://noeledwardmadrideo-cell.github.io/CC-101/#" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-xl text-xs font-semibold text-white bg-pink-600 hover:bg-pink-500 transition-colors flex items-center gap-2">
+                                <span>Live Demo</span>
+                                <i class="fa-solid fa-external-link-alt text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5: GEC4AAA / George Dantzig Website -->
+                <div class="gradient-border p-[1px] group md:col-span-2 lg:col-span-2">
+                    <div class="glass-panel rounded-[15px] p-6 h-full flex flex-col justify-between transition-transform duration-300 group-hover:-translate-y-1">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/20 code-font">History & Science</span>
+                                <i class="fa-solid fa-chart-line text-2xl text-amber-400"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white group-hover:text-amber-400 transition-colors">George Dantzig Website</h3>
+                            <p class="text-slate-400 text-sm mt-2 leading-relaxed">
+                                An educational tribute and comprehensive web portal dedicated to George Dantzig, the legendary mathematician known for developing the simplex algorithm and linear programming.
+                            </p>
+                        </div>
+                        <div class="pt-6 mt-6 border-t border-white/15 flex items-center justify-between">
+                            <span class="text-xs code-font text-slate-400">GitHub Pages</span>
+                            <a href="https://noeledwardmadrideo-cell.github.io/GEC4AAA/" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-xl text-xs font-semibold text-white bg-amber-600 hover:bg-amber-500 transition-colors flex items-center gap-2">
+                                <span>Live Demo</span>
+                                <i class="fa-solid fa-external-link-alt text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="certs" class="py-20 relative border-t border-white/5 bg-cyber-card/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-cyan-400 code-font text-sm uppercase tracking-widest font-semibold">Saylor Academy Credentials</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold mt-2 text-white">Professional Certifications</h2>
+                <div class="w-16 h-1 bg-gradient-to-r from-cyan-400 to-indigo-500 mx-auto mt-4 rounded-full"></div>
+                <p class="text-slate-400 text-sm mt-4">
+                    Rigorously completed and verified computer science coursework and professional certificates from Saylor Academy.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Cert 1 -->
+                <div class="glass-panel p-6 rounded-2xl border border-white/10 hover:border-cyan-500/40 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-semibold code-font text-cyan-400 bg-cyan-500/10 px-2.5 py-1 rounded-md">CS205</span>
+                            <i class="fa-solid fa-robot text-cyan-400"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-white mb-2">Building with Artificial Intelligence</h3>
+                        <p class="text-xs text-slate-400">Foundational concepts, models, and practical AI application development.</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+                        <span class="text-[11px] code-font text-slate-500">Saylor Academy</span>
+                        <a href="https://learn.saylor.org/pluginfile.php/1/tool_certificate/issues/1760454155/6119359937NM.pdf" target="_blank" rel="noopener noreferrer" class="text-xs text-cyan-400 hover:underline font-semibold flex items-center gap-1">
+                            <span>Verify PDF</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Cert 2 -->
+                <div class="glass-panel p-6 rounded-2xl border border-white/10 hover:border-cyan-500/40 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-semibold code-font text-indigo-400 bg-indigo-500/10 px-2.5 py-1 rounded-md">CS202</span>
+                            <i class="fa-solid fa-network-wired text-indigo-400"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-white mb-2">Discrete Structures</h3>
+                        <p class="text-xs text-slate-400">Mathematical logic, sets, relations, graph theory, and algorithmic complexity.</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+                        <span class="text-[11px] code-font text-slate-500">Saylor Academy</span>
+                        <a href="https://learn.saylor.org/pluginfile.php/1/tool_certificate/issues/1760453413/1528952520NM.pdf" target="_blank" rel="noopener noreferrer" class="text-xs text-indigo-400 hover:underline font-semibold flex items-center gap-1">
+                            <span>Verify PDF</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Cert 3 -->
+                <div class="glass-panel p-6 rounded-2xl border border-white/10 hover:border-cyan-500/40 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-semibold code-font text-purple-400 bg-purple-500/10 px-2.5 py-1 rounded-md">CS201</span>
+                            <i class="fa-solid fa-database text-purple-400"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-white mb-2">Elementary Data Structures</h3>
+                        <p class="text-xs text-slate-400">Arrays, linked lists, stacks, queues, trees, and searching/sorting algorithms.</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+                        <span class="text-[11px] code-font text-slate-500">Saylor Academy</span>
+                        <a href="https://learn.saylor.org/pluginfile.php/1/tool_certificate/issues/1760452652/1106943556NM.pdf" target="_blank" rel="noopener noreferrer" class="text-xs text-purple-400 hover:underline font-semibold flex items-center gap-1">
+                            <span>Verify PDF</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Cert 4 -->
+                <div class="glass-panel p-6 rounded-2xl border border-white/10 hover:border-cyan-500/40 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-semibold code-font text-pink-400 bg-pink-500/10 px-2.5 py-1 rounded-md">CS302</span>
+                            <i class="fa-solid fa-gears text-pink-400"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-white mb-2">Software Engineering</h3>
+                        <p class="text-xs text-slate-400">Software development life cycle, design patterns, testing, and project management.</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+                        <span class="text-[11px] code-font text-slate-500">Saylor Academy</span>
+                        <a href="https://learn.saylor.org/pluginfile.php/1/tool_certificate/issues/1758517478/4488025584NM.pdf" target="_blank" rel="noopener noreferrer" class="text-xs text-pink-400 hover:underline font-semibold flex items-center gap-1">
+                            <span>Verify PDF</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Cert 5 -->
+                <div class="glass-panel p-6 rounded-2xl border border-white/10 hover:border-cyan-500/40 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-semibold code-font text-amber-400 bg-amber-500/10 px-2.5 py-1 rounded-md">CS120</span>
+                            <i class="fa-brands fa-bitcoin text-amber-400"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-white mb-2">Bitcoin for Developers I</h3>
+                        <p class="text-xs text-slate-400">Cryptographic protocols, blockchain architecture, and decentralized transactions.</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+                        <span class="text-[11px] code-font text-slate-500">Saylor Academy</span>
+                        <a href="https://learn.saylor.org/pluginfile.php/1/tool_certificate/issues/1758516502/0269225681NM.pdf" target="_blank" rel="noopener noreferrer" class="text-xs text-amber-400 hover:underline font-semibold flex items-center gap-1">
+                            <span>Verify PDF</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Cert 6 -->
+                <div class="glass-panel p-6 rounded-2xl border border-white/10 hover:border-cyan-500/40 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-semibold code-font text-blue-400 bg-blue-500/10 px-2.5 py-1 rounded-md">CS107</span>
+                            <i class="fa-solid fa-code text-blue-400"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-white mb-2">C++ Programming</h3>
+                        <p class="text-xs text-slate-400">Object-oriented programming, memory management, pointers, and syntax in C++.</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+                        <span class="text-[11px] code-font text-slate-500">Saylor Academy</span>
+                        <a href="https://learn.saylor.org/pluginfile.php/1/tool_certificate/issues/1758515795/8447052900NM.pdf" target="_blank" rel="noopener noreferrer" class="text-xs text-blue-400 hover:underline font-semibold flex items-center gap-1">
+                            <span>Verify PDF</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Cert 7 -->
+                <div class="glass-panel p-6 rounded-2xl border border-white/10 hover:border-cyan-500/40 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-semibold code-font text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-md">CS105</span>
+                            <i class="fa-brands fa-python text-emerald-400"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-white mb-2">Introduction to Python</h3>
+                        <p class="text-xs text-slate-400">Scripting fundamentals, data structures, libraries, and functional logic in Python.</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+                        <span class="text-[11px] code-font text-slate-500">Saylor Academy</span>
+                        <a href="https://learn.saylor.org/pluginfile.php/1/tool_certificate/issues/1758258659/7237076098NM.pdf" target="_blank" rel="noopener noreferrer" class="text-xs text-emerald-400 hover:underline font-semibold flex items-center gap-1">
+                            <span>Verify PDF</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Cert 8 -->
+                <div class="glass-panel p-6 rounded-2xl border border-white/10 hover:border-cyan-500/40 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-semibold code-font text-teal-400 bg-teal-500/10 px-2.5 py-1 rounded-md">CS102</span>
+                            <i class="fa-solid fa-laptop-code text-teal-400"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-white mb-2">Introduction to Computer Science II</h3>
+                        <p class="text-xs text-slate-400">Advanced programming paradigms, algorithms, and computational problem solving.</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+                        <span class="text-[11px] code-font text-slate-500">Saylor Academy</span>
+                        <a href="https://learn.saylor.org/pluginfile.php/1/tool_certificate/issues/1758257652/7114673919NM.pdf" target="_blank" rel="noopener noreferrer" class="text-xs text-teal-400 hover:underline font-semibold flex items-center gap-1">
+                            <span>Verify PDF</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Cert 9 -->
+                <div class="glass-panel p-6 rounded-2xl border border-white/10 hover:border-cyan-500/40 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-semibold code-font text-violet-400 bg-violet-500/10 px-2.5 py-1 rounded-md">CS101</span>
+                            <i class="fa-solid fa-terminal text-violet-400"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-white mb-2">Introduction to Programming I</h3>
+                        <p class="text-xs text-slate-400">Core programming logic, control structures, functions, and debugging.</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+                        <span class="text-[11px] code-font text-slate-500">Saylor Academy</span>
+                        <a href="https://learn.saylor.org/pluginfile.php/1/tool_certificate/issues/1758192575/7704406550NM.pdf" target="_blank" rel="noopener noreferrer" class="text-xs text-violet-400 hover:underline font-semibold flex items-center gap-1">
+                            <span>Verify PDF</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-20 relative border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-purple-400 code-font text-sm uppercase tracking-widest font-semibold">Technical Expertise</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold mt-2 text-white">Skills & Technologies</h2>
+                <div class="w-16 h-1 bg-gradient-to-r from-purple-500 to-indigo-500 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                <!-- Skill 1 -->
+                <div class="glass-panel p-6 rounded-2xl text-center hover:border-indigo-500/50 transition-all group">
+                    <i class="fa-brands fa-python text-4xl text-emerald-400 mb-3 group-hover:scale-110 transition-transform"></i>
+                    <div class="font-bold text-sm text-white">Python</div>
+                    <div class="text-[10px] text-slate-400 mt-1 code-font">Advanced</div>
+                </div>
+                <!-- Skill 2 -->
+                <div class="glass-panel p-6 rounded-2xl text-center hover:border-indigo-500/50 transition-all group">
+                    <i class="fa-solid fa-code text-4xl text-blue-400 mb-3 group-hover:scale-110 transition-transform"></i>
+                    <div class="font-bold text-sm text-white">C++ Programming</div>
+                    <div class="text-[10px] text-slate-400 mt-1 code-font">Core CS</div>
+                </div>
+                <!-- Skill 3 -->
+                <div class="glass-panel p-6 rounded-2xl text-center hover:border-indigo-500/50 transition-all group">
+                    <i class="fa-brands fa-html5 text-4xl text-orange-400 mb-3 group-hover:scale-110 transition-transform"></i>
+                    <div class="font-bold text-sm text-white">HTML5 / CSS3</div>
+                    <div class="text-[10px] text-slate-400 mt-1 code-font">Expert</div>
+                </div>
+                <!-- Skill 4 -->
+                <div class="glass-panel p-6 rounded-2xl text-center hover:border-indigo-500/50 transition-all group">
+                    <i class="fa-brands fa-js text-4xl text-yellow-400 mb-3 group-hover:scale-110 transition-transform"></i>
+                    <div class="font-bold text-sm text-white">JavaScript</div>
+                    <div class="text-[10px] text-slate-400 mt-1 code-font">Frontend</div>
+                </div>
+                <!-- Skill 5 -->
+                <div class="glass-panel p-6 rounded-2xl text-center hover:border-indigo-500/50 transition-all group">
+                    <i class="fa-solid fa-database text-4xl text-purple-400 mb-3 group-hover:scale-110 transition-transform"></i>
+                    <div class="font-bold text-sm text-white">Data Structures</div>
+                    <div class="text-[10px] text-slate-400 mt-1 code-font">Algorithms</div>
+                </div>
+                <!-- Skill 6 -->
+                <div class="glass-panel p-6 rounded-2xl text-center hover:border-indigo-500/50 transition-all group">
+                    <i class="fa-solid fa-brain text-4xl text-cyan-400 mb-3 group-hover:scale-110 transition-transform"></i>
+                    <div class="font-bold text-sm text-white">Artificial Intelligence</div>
+                    <div class="text-[10px] text-slate-400 mt-1 code-font">AI / ML</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 relative border-t border-white/5 bg-cyber-card/40">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-indigo-400 code-font text-sm uppercase tracking-widest font-semibold">Get In Touch</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold mt-2 text-white">Let's Build Something Amazing</h2>
+                <div class="w-16 h-1 bg-gradient-to-r from-indigo-500 to-cyan-400 mx-auto mt-4 rounded-full"></div>
+                <p class="text-slate-400 text-sm mt-4">
+                    Have a project in mind, collaboration proposal, or just want to connect? Drop a message below!
+                </p>
+            </div>
+
+            <div class="glass-panel p-8 sm:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
+                <div class="absolute -top-24 -right-24 w-48 h-48 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+                <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-semibold code-font text-slate-300 mb-2">YOUR NAME</label>
+                            <input type="text" required class="w-full bg-cyber-dark/80 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-indigo-500 transition-colors" placeholder="John Doe">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold code-font text-slate-300 mb-2">YOUR EMAIL</label>
+                            <input type="email" required class="w-full bg-cyber-dark/80 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-indigo-500 transition-colors" placeholder="john@example.com">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold code-font text-slate-300 mb-2">MESSAGE</label>
+                        <textarea rows="5" required class="w-full bg-cyber-dark/80 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-indigo-500 transition-colors resize-none" placeholder="Hello Noel, I'd like to talk about..."></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-4 rounded-xl font-bold text-white bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-600 hover:bg-[position:right_center] transition-all shadow-lg shadow-indigo-500/25 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <span>Send Message</span>
+                    </button>
+                </form>
+
+                <!-- Success notification box -->
+                <div id="success-box" class="hidden mt-6 p-4 rounded-xl bg-green-500/10 border border-green-500/30 text-green-400 text-center text-sm code-font">
+                    <i class="fa-solid fa-circle-check mr-2"></i>Message transmitted successfully! Noel will get back to you soon.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 border-t border-white/5 text-center text-slate-500 text-xs code-font">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+            <div class="flex items-center justify-center gap-6 text-slate-400">
+                <a href="https://github.com/noeledwardmadrideo-cell" target="_blank" rel="noopener noreferrer" class="hover:text-indigo-400 text-lg transition-colors"><i class="fa-brands fa-github"></i></a>
+                <a href="mailto:noel@example.com" class="hover:text-indigo-400 text-lg transition-colors"><i class="fa-solid fa-envelope"></i></a>
+                <a href="#hero" class="hover:text-indigo-400 text-lg transition-colors"><i class="fa-solid fa-arrow-up"></i></a>
+            </div>
+            <p>© 2026 Noel Edward G. Madrideo. President Ramon Magsaysay State University (PRMSU) Castillejos.</p>
+            <p class="text-[10px] text-slate-600">Built with modern CSS glassmorphism, glowing gradients & high-end UI animations.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Contact form submission handler
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const successBox = document.getElementById('success-box');
+            successBox.classList.remove('hidden');
+            document.getElementById('contact-form').reset();
+            setTimeout(() => {
+                successBox.classList.add('hidden');
+            }, 6000);
+        }
+
+        // Smooth scroll adjustment for fixed header
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerOffset = 80;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
